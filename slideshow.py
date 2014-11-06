@@ -1,7 +1,8 @@
 import random
 import sys
 import os
-from PyQt4.QtGui import QColor
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import QColor, QCursor
 import utils
 
 
@@ -117,6 +118,7 @@ def main(paths):
     else:
         print " You can either enter a list of paths or single path"
     app = QtGui.QApplication(sys.argv)
+    app.setOverrideCursor(QCursor(Qt.BlankCursor))
     if imgLst:
         window =  SlideShowPics(imgLst, paths)
         window.show()
