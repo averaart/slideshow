@@ -1,6 +1,7 @@
 import random
 import sys
 import os
+from PyQt4.QtGui import QColor
 import utils
 
 
@@ -20,6 +21,7 @@ class SlideShowPics(QtGui.QMainWindow):
         self._imagesDisplayed = set()
         self._imagesToDisplay = set()
         self._imagesInList = imgLst
+        self._nextImage = QtGui.QPixmap()
         self._pause = False
         self._count = 0
         self.animFlag = True
@@ -76,12 +78,10 @@ class SlideShowPics(QtGui.QMainWindow):
 
     def showImageByPath(self, path):
         if path:
+            self.label.setPixmap(self._nextImage)
             image = QtGui.QImage(path)
             pp = QtGui.QPixmap.fromImage(image)
-            self.label.setPixmap(pp.scaled(
-                    self.label.size(),
-                    QtCore.Qt.KeepAspectRatio,
-                    QtCore.Qt.SmoothTransformation))
+            self._nextImage = pp.scaled(self.label.size(), QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
 
     def playPause(self):
         if not self._pause:
