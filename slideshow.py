@@ -86,7 +86,7 @@ class SlideShowPics(QtGui.QMainWindow):
     def playPause(self):
         if not self._pause:
             self._pause = True
-            self.updateTimer.start(4000)
+            self.updateTimer.start(7000)
             return self._pause
         else:
             self._pause = False
